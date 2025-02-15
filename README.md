@@ -28,14 +28,14 @@ Design Text by Woxro is a Next.js project that combines the power of the new App
 - **GSAP (GreenSock Animation Platform)**
 - **Lenis (Smooth scrolling library)**
 - **Tailwind CSS** (or alternative styling method)
-- **Vercel** (for deployment, optional)
+- **Vercel** (for deployment)
 
 ## Installation
 
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/design-text-by-woxro.git
+   git clone https://github.com/Vaishak234/woxro-design-test
 
 2. **Install Dependencies:**
 
@@ -53,6 +53,8 @@ Design Text by Woxro is a Next.js project that combines the power of the new App
 
 4. **Open http://localhost:3000 in your browser to view the project.**
 
+5. **Deployed Link**
+   
  
        
 
