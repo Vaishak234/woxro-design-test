@@ -54,7 +54,7 @@ Design Text by Woxro is a Next.js project that combines the power of the new App
 4. **Open http://localhost:3000 in your browser to view the project.**
 
 5. **Deployed Link**
-   
+      https://woxro-design-test.vercel.app/
  
        
 
