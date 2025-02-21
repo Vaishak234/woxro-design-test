@@ -16,24 +16,22 @@ export default function Landing() {
     const cubesRefs = useRef<(HTMLDivElement | null)[]>([]);
     const headerOneRef = useRef<HTMLDivElement>(null);
     const headerTwoRef = useRef<HTMLDivElement>(null);
-     const [currentCubesData, setCurrentCubesData] = useState<Partial<typeof cubesData>>(cubesData);
+    const [currentCubesData, setCurrentCubesData] = useState<Partial<typeof cubesData>>(cubesData);
 
     useLayoutEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 900) {
-                setCurrentCubesData(mobileCubesData);
-            } else {
-                setCurrentCubesData(cubesData);
-            }
+            setCurrentCubesData(window.innerWidth < 900 ? mobileCubesData : cubesData);
         };
 
-        handleResize(); // Check on initial load
-        window.addEventListener('resize', handleResize);
+        handleResize();
+        window.addEventListener("resize", handleResize);
 
         return () => {
-            window.removeEventListener('resize', handleResize);
+            window.removeEventListener("resize", handleResize);
         };
-    }, []);
+    }, [currentCubesData]);
+
+
 
     useLayoutEffect(() => {
         const lenis = new Lenis();
