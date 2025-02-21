@@ -1,10 +1,10 @@
 'use client';
 import Image from 'next/image';
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import Lenis from 'lenis';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
-import { cubesData, interpolate } from '@/constants';
+import { cubesData, interpolate, mobileCubesData } from '@/constants';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +14,24 @@ export default function Landing() {
     const cubesRefs = useRef<(HTMLDivElement | null)[]>([]);
     const headerOneRef = useRef<HTMLDivElement>(null);
     const headerTwoRef = useRef<HTMLDivElement>(null);
+     const [currentCubesData, setCurrentCubesData] = useState<{[key:string]:any}>(cubesData);
+
+    useLayoutEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 900) {
+                setCurrentCubesData(mobileCubesData);
+            } else {
+                setCurrentCubesData(cubesData);
+            }
+        };
+
+        handleResize(); // Check on initial load
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     useLayoutEffect(() => {
         const lenis = new Lenis();
@@ -73,7 +91,7 @@ export default function Landing() {
                 const firstPhaseProgress = Math.min(self.progress * 2, 1);
                 const secondPhaseProgress = self.progress >= 0.5 ? (self.progress - 0.5) * 2 : 0;
 
-                Object.entries(cubesData).forEach(([cubeClass, data]) => {
+                Object.entries(currentCubesData).forEach(([cubeClass, data]) => {
                     const cube = document.querySelector(`.${cubeClass}`) as HTMLElement;
                     if (!cube) return;
                     const { initial, final } = data;
@@ -108,14 +126,14 @@ export default function Landing() {
             lenis.destroy();
             ScrollTrigger.getAll().forEach(trigger => trigger.kill());
         };
-    }, []);
+    }, [currentCubesData]);
 
 
 
     return (
         <div className="">
             <section className="sticky" ref={stickySectionRef}>
-                <div className="logo" ref={logoRef}>
+                <div className=" absolute top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-6 z-20" ref={logoRef}>
                     {Array.from({ length: 3 }).map((_, rowIndex) => (
                         <div className="cols" key={rowIndex}>
                             {Array.from({ length: 2 }).map((_, colIndex) => {
@@ -152,13 +170,13 @@ export default function Landing() {
                 </div>
 
                 <div>
-                    <div className="w-3/5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center origin-center text-[30px] sm:mt-5 lg:mt-0 lg:text-[50px]" ref={headerOneRef}>
+                    <div className="w-full px-4 lg:w-3/5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center origin-center text-[20px] lg:mt-0 lg:text-[50px]" ref={headerOneRef}>
                         <h1>The first media company crafted for the digital first generation</h1>
                     </div>
 
-                    <div className="header-two mt-10" ref={headerTwoRef}>
-                        <h2 className='text-l lg:text-2xl font-bold mb-3'>Where innovations meets precisions.</h2>
-                        <p className='text-lg leading-[30px] '>
+                    <div className="mt-10 w-[80%] lg:w-[30%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 origin-center text-center opacity-0 " ref={headerTwoRef}>
+                        <h2 className='text-lg lg:text-2xl font-bold mb-3'>Where innovations meets precisions.</h2>
+                        <p className='text-md lg:text-lg lg:leading-[30px] '>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, nam? Incidunt ad praesentium temporibus ipsum rem perspiciatis ut commodi soluta odio nisi quos sed excepturi voluptate itaque, impedit magnam numquam.
                         </p>
                     </div>
