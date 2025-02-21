@@ -148,22 +148,22 @@ export default function Landing() {
                     {Array.from({ length: 6 }).map((_, index) => (
                         <div className={`cube cube-${index + 1}`} ref={(el) => { cubesRefs.current[index] = el; }} key={index}>
                             <div className="front bg-red-700 z-20">
-                                <Image src={`/asset/cube-${index + 1}.jpg`} alt="Front" layout="fill" objectFit="cover" />
+                                <img src={`/asset/cube-${index + 1}.jpg`} alt="Front" layout="fill" objectFit="cover" />
                             </div>
                             <div className="back bg-green-700 z-20">
-                                <Image src={`/asset/cube-${index + 1}.jpg`} alt="Back" layout="fill" objectFit="cover" />
+                                <img src={`/asset/cube-${index + 1}.jpg`} alt="Back" layout="fill" objectFit="cover" />
                             </div>
                             <div className="left bg-blue-700 z-20">
-                                <Image src={`/asset/cube-${index + 1}.jpg`} alt="Left" layout="fill" objectFit="cover" />
+                                <img src={`/asset/cube-${index + 1}.jpg`} alt="Left" layout="fill" objectFit="cover" />
                             </div>
                             <div className="right bg-yellow-700 z-20">
-                                <Image src={`/asset/cube-${index + 1}.jpg`} alt="Right" layout="fill" objectFit="cover" />
+                                <img src={`/asset/cube-${index + 1}.jpg`} alt="Right" layout="fill" objectFit="cover" />
                             </div>
                             <div className="top bg-purple-700 z-20">
-                                <Image src={`/asset/cube-${index + 1}.jpg`} alt="Top" layout="fill" objectFit="cover" />
+                                <img src={`/asset/cube-${index + 1}.jpg`} alt="Top" layout="fill" objectFit="cover" />
                             </div>
                             <div className="bottom bg-pink-700 z-20">
-                                <Image src={`/asset/cube-${index + 1}.jpg`} alt="Bottom" layout="fill" objectFit="cover" />
+                                <img src={`/asset/cube-${index + 1}.jpg`} alt="Bottom" layout="fill" objectFit="cover" />
                             </div>
                         </div>
                     ))}
