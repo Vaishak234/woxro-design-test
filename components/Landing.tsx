@@ -8,13 +8,15 @@ import { cubesData, interpolate, mobileCubesData } from '@/constants';
 
 gsap.registerPlugin(ScrollTrigger);
 
+
+
 export default function Landing() {
     const stickySectionRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef<HTMLDivElement>(null);
     const cubesRefs = useRef<(HTMLDivElement | null)[]>([]);
     const headerOneRef = useRef<HTMLDivElement>(null);
     const headerTwoRef = useRef<HTMLDivElement>(null);
-     const [currentCubesData, setCurrentCubesData] = useState<{[key:string]:any}>(cubesData);
+     const [currentCubesData, setCurrentCubesData] = useState<Partial<typeof cubesData>>(cubesData);
 
     useLayoutEffect(() => {
         const handleResize = () => {
